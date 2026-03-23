@@ -1,0 +1,13 @@
+x-logging: &base-logging
+  driver: "json-file"
+  options:
+    max-size: "10m"
+    max-file: "5"
+services:
+  workspace:
+    init: true
+    build:
+      context: ./dockerfiles/nodejs
+    volumes:
+      - output:/mnt
+    logging: *base-logging
