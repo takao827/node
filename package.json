@@ -1,5 +1,25 @@
 {
   "dependencies": {
     "undici": "^7.24.5"
-  }
+  },
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "TODO",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/takao827/nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/takao827/nodejs/issues"
+  },
+  "homepage": "https://github.com/takao827/nodejs#readme"
 }
