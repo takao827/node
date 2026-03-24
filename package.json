@@ -10,6 +10,7 @@
   "description": "TODO",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,5 +24,10 @@
   "bugs": {
     "url": "https://github.com/takao827/nodejs/issues"
   },
-  "homepage": "https://github.com/takao827/nodejs#readme"
+  "homepage": "https://github.com/takao827/nodejs#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.1.0",
+    "globals": "^17.4.0"
+  }
 }
