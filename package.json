@@ -1,13 +1,13 @@
 {
   "private": true,
   "dependencies": {
-    "undici": "^7.24.5"
+    "undici": "^7.24.5",
+    "yargs": "^18.0.0"
   },
   "name": "nodejs",
   "version": "1.0.0",
   "description": "TODO",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
