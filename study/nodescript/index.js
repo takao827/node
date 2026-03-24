@@ -5,7 +5,7 @@ function printName() {
 }
 
 const obj = {
-  name: "John Doe",
+  name: 'John Doe',
   printName: printName,
 };
 

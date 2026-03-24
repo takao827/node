@@ -1,14 +1,14 @@
-import { request } from 'undici';
+// import { request } from 'undici';
 
-console.time('req');
+// console.time('req');
 
-const reqs = [];
+// const reqs = [];
 
-for (let i = 0; i < 10; i++) {
-    const req = request('http://localhost:3000').then(res => res.body.text());
-    reqs.push(req);
-}
+// for (let i = 0; i < 10; i++) {
+//     const req = request('http://localhost:3000').then(res => res.body.text());
+//     reqs.push(req);
+// }
 
-await Promise.all(reqs);
+// await Promise.all(reqs);
 
-console.timeEnd('req');
+// console.timeEnd('req');
