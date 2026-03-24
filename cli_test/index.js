@@ -1,7 +1,8 @@
 const path = require('path');
-const fs = require('fs');
 const yargs = require('yargs');
 const { hideBin } = require('yargs/helpers');
+const { getPackageName } = require('./lib/name');
+const { readMarkdownFileSync } = require('./lib/file');
 
 const { argv } = yargs(hideBin(process.argv))
   .option('name', {
@@ -14,14 +15,16 @@ const { argv } = yargs(hideBin(process.argv))
   });
 
 if (argv.name) {
-  const packageStr = fs.readFileSync(path.join(__dirname, '../package.json'), { encoding: 'utf8' });
-  const packageJson = JSON.parse(packageStr);
-  console.log(packageJson.name);
+  console.log(getPackageName());
 
   process.exit(0);
-} else if (argv.file) {
-  const markdownStr = fs.readFileSync(path.resolve(__dirname, argv.file), { encoding: 'utf8' });
-  console.log(markdownStr);
-} else {
-  console.log(packageJson);
 }
+
+if (argv.file) {
+  const markdownStr = readMarkdownFileSync(path.resolve(__dirname, argv.file));
+  console.log(markdownStr);
+
+  process.exit(0);
+}
+
+console.log('Invalid command');
