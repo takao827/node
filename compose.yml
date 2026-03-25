@@ -4,14 +4,14 @@ x-logging: &base-logging
     max-size: "10m"
     max-file: "5"
 services:
-  app:
+  node:
     init: true
     build:
       context: ./dockerfiles/nodejs
     ports:
       - 3000:3000
     volumes:
-      - output:/mnt
+      - .:/mnt
     working_dir: /mnt
     command: npm start
     logging: *base-logging

@@ -9,5 +9,5 @@ services:
     build:
       context: ./dockerfiles/nodejs
     volumes:
-      - output:/mnt
+      - .:/mnt
     logging: *base-logging
