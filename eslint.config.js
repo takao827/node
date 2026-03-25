@@ -10,11 +10,12 @@ module.exports = [
       sourceType: 'commonjs',
       globals: {
         ...globals.node,
+        ...globals.jest,
       },
     },
     rules: {
-      semi: ['error', 'always', { 'omitLastInOneLineBlock': true }],
+      semi: ['error', 'always', { omitLastInOneLineBlock: true }],
       quotes: ['error', 'single'],
     },
-  }
+  },
 ];
