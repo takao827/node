@@ -3,14 +3,11 @@ const path = require('path');
 const express = require('express');
 const app = express();
 
+const { redisConfig } = require('./config');
+
 app.set('view engine', 'ejs');
 
-const redis = new Redis({
-  host: 'redis',
-  port: 6379,
-  password: process.env.REDIS_PASSWORD,
-  enableOfflineQueue: false,
-});
+const redis = new Redis(redisConfig);
 
 const init = async () => {
   await Promise.all([
