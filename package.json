@@ -1,6 +1,7 @@
 {
   "private": true,
   "dependencies": {
+    "ejs": "^5.0.1",
     "express": "^5.2.1",
     "ioredis": "^5.10.1",
     "marked": "^17.0.5",

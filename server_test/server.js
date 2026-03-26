@@ -1,6 +1,9 @@
 const Redis = require('ioredis');
+const path = require('path');
 const express = require('express');
 const app = express();
+
+app.set('view engine', 'ejs');
 
 const redis = new Redis({
   host: 'redis',
@@ -23,7 +26,7 @@ const { logMiddleware } = require('./middleware/logMiddleware');
 app.use(logMiddleware);
 
 app.get('/', (req, res) => {
-  res.send('Hello World');
+  res.render(path.join(__dirname, 'views', 'index.ejs'));
 });
 
 app.get('/user/:id', async (req, res) => {
