@@ -11,10 +11,11 @@ services:
       target: app
     ports:
       - 3000:3000
+      - 9229:9229
     volumes:
       - .:/mnt
     working_dir: /mnt
-    command: npm start
+    command: npm run dev
     logging: *base-logging
     depends_on:
       - redis

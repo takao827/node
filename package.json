@@ -13,6 +13,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server_test/server.js",
+    "dev": "node --inspect=0.0.0.0:9229 server_test/server.js",
     "lint": "eslint .",
     "test": "jest"
   },
