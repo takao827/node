@@ -22,6 +22,7 @@ RUN apt-get update \
     vim \
     sudo \
     jq \
+    redis-tools \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
