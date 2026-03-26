@@ -9,6 +9,7 @@ module.exports = [
       ecmaVersion: 'latest',
       sourceType: 'commonjs',
       globals: {
+        ...globals.browser,
         ...globals.node,
         ...globals.jest,
       },

@@ -25,6 +25,8 @@ const { logMiddleware } = require('./middleware/logMiddleware');
 
 app.use(logMiddleware);
 
+app.use('/static', express.static(path.join(__dirname, 'public')));
+
 app.get('/', (req, res) => {
   res.render(path.join(__dirname, 'views', 'index.ejs'));
 });
@@ -57,7 +59,7 @@ app.get('/users', async (req, res) => {
       }
     }
 
-    res.status(200).json(users);
+    res.render(path.join(__dirname, 'views', 'users.ejs'), { users: users });
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
