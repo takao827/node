@@ -9,6 +9,15 @@ const redis = new Redis({
   enableOfflineQueue: false,
 });
 
+const init = async () => {
+  await Promise.all([
+    redis.set('users:1', JSON.stringify({ id: 1, name: 'John Doe' })),
+    redis.set('users:2', JSON.stringify({ id: 2, name: 'Jane Doe' })),
+    redis.set('users:3', JSON.stringify({ id: 3, name: 'John Smith' })),
+    redis.set('users:4', JSON.stringify({ id: 4, name: 'Jane Smith' })),
+  ]);
+};
+
 const { logMiddleware } = require('./middleware/logMiddleware');
 
 app.use(logMiddleware);
@@ -26,8 +35,10 @@ app.use((err, req, res, next) => {
   res.status(500).send('Internal Server Error');
 });
 
-redis.once('ready', () => {
+redis.once('ready', async () => {
   try {
+    await init();
+
     app.listen(3000, () => {
       console.log('Server is running on port 3000');
     });
