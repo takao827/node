@@ -26,8 +26,39 @@ app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
-app.get('/user/:id', (req, res) => {
-  res.send(`User ID: ${req.params.id}`);
+app.get('/user/:id', async (req, res) => {
+  try {
+    const key = `users:${req.params.id}`;
+    const val = await redis.get(key);
+    const user = JSON.parse(val);
+    res.status(200).json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/users', async (req, res) => {
+  try {
+    const stream = redis.scanStream({
+      match: 'users:*',
+      count: 2,
+    });
+
+    const users = [];
+    for await (const keys of stream) {
+      for (const key of keys) {
+        const val = await redis.get(key);
+        const user = JSON.parse(val);
+        users.push(user);
+      }
+    }
+
+    res.status(200).json(users);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 // eslint-disable-next-line no-unused-vars
