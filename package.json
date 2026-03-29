@@ -13,8 +13,8 @@
   "description": "TODO",
   "main": "index.js",
   "scripts": {
-    "start": "node server_test/server.js",
-    "dev": "node --inspect=0.0.0.0:9229 server_test/server.js",
+    "start": "node server.js",
+    "dev": "node --inspect=0.0.0.0:9229 server.js",
     "lint": "eslint .",
     "test": "jest"
   },
