@@ -34,6 +34,21 @@ test('getUser', async () => {
   expect(res).toBeNull();
 });
 
+test('getUser Reject', async () => {
+  expect.assertions(2);
+
+  mockRedisGet.mockRejectedValue(new Error('something error'));
+
+  const reqMock = {params: { id: 1 }};
+
+  try {
+    await userHandler.getUser(reqMock);
+  } catch (err) {
+    expect(err.message).toStrictEqual('something error');
+    expect(err instanceof Error).toStrictEqual(true);
+  }
+});
+
 test('getUsers', async () => {
   const streamMock = {
     async *[Symbol.asyncIterator]() {
