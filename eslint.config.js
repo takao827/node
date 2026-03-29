@@ -7,7 +7,7 @@ module.exports = [
   {
     languageOptions: {
       ecmaVersion: 'latest',
-      sourceType: 'commonjs',
+      sourceType: ['commonjs', 'module'],
       globals: {
         ...globals.browser,
         ...globals.node,
