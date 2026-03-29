@@ -17,6 +17,8 @@ app.get('/', (req, res) => {
   res.render(path.join(__dirname, 'views', 'index.ejs'));
 });
 
+// TODO: Decoratorパターンでハンドラーからエラーハンドリング、ロギングを切り出す
+
 app.get('/user/:id', async (req, res) => {
   try {
     const user = await userHandler.getUser(req.params.id);
