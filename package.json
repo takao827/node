@@ -1,41 +1,12 @@
 {
-  "private": true,
-  "dependencies": {
-    "ejs": "^5.0.1",
-    "express": "^5.2.1",
-    "ioredis": "^5.10.1",
-    "marked": "^17.0.5",
-    "undici": "^7.24.5",
-    "yargs": "^18.0.0"
-  },
-  "name": "nodejs",
-  "version": "1.0.0",
-  "description": "TODO",
-  "main": "index.js",
-  "scripts": {
-    "start": "node server.js",
-    "dev": "node --inspect=0.0.0.0:9229 server.js",
-    "lint": "eslint .",
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/takao827/nodejs.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/takao827/nodejs/issues"
-  },
-  "homepage": "https://github.com/takao827/nodejs#readme",
-  "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "eslint": "^10.1.0",
-    "globals": "^17.4.0",
-    "jest": "^30.3.0",
-    "prettier": "^3.8.1",
-    "prettier-plugin-sh": "^0.18.0"
-  }
+    "private": true,
+    "workspaces": [
+        "packages/*"
+    ],
+    "scripts": {
+        "start": "npm start -w packages/backend",
+        "dev": "npm run dev -w packages/backend",
+        "lint": "eslint .",
+        "test": "jest"
+    }
 }
