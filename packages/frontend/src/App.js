@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [inputText, setInputText] = useState('');
+  const [users, setUsers] = useState([
+    'John Doe',
+    'Jane Doe',
+    'John Smith',
+    'Jane Smith',
+  ]);
+
+  const userList = users.map((user) => <li key={user}>{user}</li>);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setUsers([...users, inputText]);
+  };
+
+  const handleChange = (event) => {
+    setInputText(event.target.value);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>{userList}</ul>
+      <form onSubmit={handleSubmit}>
+        <input type="text" onChange={handleChange} />
+        <button type="submit">Add</button>
+      </form>
+      <div>{inputText}</div>
     </div>
   );
 }
