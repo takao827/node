@@ -4,8 +4,10 @@
         "packages/*"
     ],
     "scripts": {
-        "start": "npm start -w packages/backend",
-        "dev": "npm run dev -w packages/backend",
+        "start": "npm start -w packages/backend && npm start -w packages/frontend",
+        "dev": "npm run backend & npm run frontend",
+        "backend": "npm run dev -w packages/backend",
+        "frontend": "npm run dev -w packages/frontend",
         "build": "npm run build -w packages/frontend",
         "lint": "eslint .",
         "test": "jest"

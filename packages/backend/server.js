@@ -13,15 +13,9 @@ app.use(logMiddleware);
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
-app.use(express.static(path.join(__dirname, '../frontend/build')));
-
-app.get('/', (req, res) => {
-  res.render(path.join(__dirname, '../frontend/build/index.html'));
-});
-
 // TODO: Decoratorパターンでハンドラーからエラーハンドリング、ロギングを切り出す
 
-app.get('/user/:id', async (req, res) => {
+app.get('/api/user/:id', async (req, res) => {
   try {
     const user = await userHandler.getUser(req.params.id);
     res.status(200).json(user);
@@ -31,10 +25,10 @@ app.get('/user/:id', async (req, res) => {
   }
 });
 
-app.get('/users', async (req, res) => {
+app.get('/api/users', async (req, res) => {
   try {
-    const users = await userHandler.getUsers();
-    res.render(path.join(__dirname, 'views', 'users.ejs'), users);
+    const users = await userHandler.getUsers(req);
+    res.status(200).json(users);
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
@@ -52,8 +46,8 @@ redis
     try {
       await redis.init();
 
-      app.listen(3000, () => {
-        console.log('Server is running on port 3000');
+      app.listen(8000, () => {
+        console.log('Server is running on port 8000');
       });
     } catch (err) {
       console.error(err);

@@ -1,5 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
+
+const getUsers = async () => {
+  const response = await fetch('/api/users');
+  const data = response.json();
+  return data;
+};
+
+function User({ name }) {
+  return <li>{name}</li>;
+}
 
 function App() {
   const [inputText, setInputText] = useState('');
@@ -10,7 +20,17 @@ function App() {
     'Jane Smith',
   ]);
 
-  const userList = users.map((user) => <li key={user}>{user}</li>);
+  useEffect(() => {
+    getUsers()
+      .then((data) => {
+        const users = data.users.map((user) => user.name);
+        return users;
+      })
+      .then((users) => setUsers(users))
+      .catch((error) => console.error(error));
+  }, []);
+
+  const userList = users.map((user) => <User key={user} name={user} />);
 
   const handleSubmit = (event) => {
     event.preventDefault();
