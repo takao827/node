@@ -13,8 +13,10 @@ app.use(logMiddleware);
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+
 app.get('/', (req, res) => {
-  res.render(path.join(__dirname, 'views', 'index.ejs'));
+  res.render(path.join(__dirname, '../frontend/build/index.html'));
 });
 
 // TODO: Decoratorパターンでハンドラーからエラーハンドリング、ロギングを切り出す
