@@ -1,0 +1,33 @@
+x-logging: &base-logging
+  driver: 'json-file'
+  options:
+    max-size: '10m'
+    max-file: '5'
+services:
+  node:
+    init: true
+    build:
+      context: ./dockerfiles/node
+      target: app
+    ports:
+      - 3000:3000
+      - 8000:8000
+      - 9229:9229
+    volumes:
+      - .:/mnt
+    working_dir: /mnt
+    command: npm run dev
+    logging: *base-logging
+    depends_on:
+      - redis
+  redis:
+    init: true
+    build:
+      context: ./dockerfiles/redis
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
+    logging: *base-logging
+volumes:
+  redis-data:
