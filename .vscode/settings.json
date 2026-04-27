@@ -3,6 +3,11 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false
+  },
   "[typescriptreact]": {
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
